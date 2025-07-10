@@ -39,7 +39,7 @@ cd llama.cpp
 cmake -B build
 cmake --build build --config Release
 ```
-> To ADD BUILD for AMD GPU's :
+> 🔧 To ADD BUILD for AMD GPU's :
 
 ```bash
 #hip build 
