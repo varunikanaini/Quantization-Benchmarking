@@ -1,5 +1,4 @@
-````markdown
-# 🚀 DeepSeek-R1-Distill-Qwen-1.5B — Full Setup, Quantization & Benchmarking Guide
+## 🚀 DeepSeek-R1-Distill-Qwen-1.5B — Full Setup, Quantization & Benchmarking Guide
 
 Welcome! 👋 This guide helps you set up, quantize, serve, and benchmark the **DeepSeek-R1-Distill-Qwen-1.5B** model using `llama.cpp`, `vLLM`, and ROCm tools.
 
