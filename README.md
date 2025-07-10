@@ -90,17 +90,9 @@ chmod +x run_custom_quant_TEST.sh
 
 ---
 
-## 📁 Project Directory Structure
-
-```bash
-cd vn2
-# ✅ llama.cpp is cloned and built
-# ✅ GGUF files are generated
-```
-
----
-
 ## 🧩 Serve Quantized Model (llama.cpp)
+
+> 🤡 Use Tmux: Inside one shell, serve the model. In other shell, Benchmark the model using benchmarking scripts.
 
 ```bash
 HIP_VISIBLE_DEVICES=1 ./llama.cpp/build/bin/llama-server \
@@ -113,12 +105,16 @@ HIP_VISIBLE_DEVICES=1 ./llama.cpp/build/bin/llama-server \
 
 📂 GGUF files:
 
+> ✨ Includes Other gguf files for benchmarking
+
 * `DeepSeek-R1-Distill-Qwen-1.5B-mixed-from-json2.gguf`
 * `DeepSeek-R1-Distill-Qwen-1.5B-gsm8k_v8_qat.gguf`
 
 ---
 
 ## 🐳 Serve OG Model with Docker + vLLM
+
+> 🤡 Use Tmux: Inside one shell, serve the model. In other shell, Benchmark the model using benchmarking scripts.
 
 ```bash
 docker run -it \
@@ -148,6 +144,8 @@ huggingface-cli download unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF DeepSeek-R1-
 ```
 
 ### ▶️ Serve Commands:
+
+> 🤡 Use Tmux: Inside one shell, serve the model. In other shell, Benchmark the model using benchmarking scripts.
 
 ```bash
 HIP_VISIBLE_DEVICES=1 ./llama.cpp/build/bin/llama-server \
@@ -204,7 +202,7 @@ scp ubuntu@193.143.78.158:/shareddata/dheyo/abhilash/vn/mmlu_* .
 
 ---
 
-## 🧪 Run LiveCodeBench (LCB)
+## 🧪 TO Run LiveCodeBench (LCB)
 
 ```bash
 export HIP_VISIBLE_DEVICES=7
