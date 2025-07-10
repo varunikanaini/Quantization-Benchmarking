@@ -39,6 +39,22 @@ cd llama.cpp
 cmake -B build
 cmake --build build --config Release
 ```
+> To ADD BUILD for AMD GPU's :
+
+```bash
+#hip build 
+cd /var/lib/ubuntu/vn2/llama.cpp
+rm -rf build
+mkdir build && cd build
+
+cmake .. \
+  -DGGML_HIP=ON \
+  -DAMDGPU_TARGETS=gfx942 \
+  -DCMAKE_HIP_ARCHITECTURES=gfx942 \
+  -DCMAKE_BUILD_TYPE=Release
+
+cmake --build . --config Release -- -j16
+```
 
 ---
 
