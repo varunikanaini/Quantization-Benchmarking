@@ -95,13 +95,14 @@ chmod +x run_custom_quant_TEST.sh
 > 🤡 Use Tmux: Inside one shell, serve the model. In other shell, Benchmark the model using benchmarking scripts.
 
 ```bash
-HIP_VISIBLE_DEVICES=1 ./llama.cpp/build/bin/llama-server \
-  -m ./DeepSeek-R1-Distill-Qwen-1.5B-gsm8k_v8_qat.gguf \
-  -c 2048 \
-  --port 1702 \
-  -t 8 \
-  -ngl 28
+HIP_VISIBLE_DEVICES=3 ./llama.cpp/build/bin/llama-server   -m ./DYNAMIC_QUANTIZATION/gguf/DeepSeek-R1-Distill-Qwen-1.5B-gsm8k_v8_qat.gguf   -c 32678   --port 1596   -t 8   -ngl 28
 ```
+
+>  To apply batching, run the below code [Adjust np based on your preference].
+
+ ```bash
+  HIP_VISIBLE_DEVICES=3 ./llama.cpp/build/bin/llama-server   -m ./DYNAMIC_QUANTIZATION/gguf/DeepSeek-R1-Distill-Qwen-1.5B-gsm8k_v8_qat.gguf   -c 32678   --port 1596   -t 8   -ngl 28 -np 8 -cb
+ ```
 
 📂 GGUF files:
 
