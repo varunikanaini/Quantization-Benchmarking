@@ -232,32 +232,34 @@ HIP_VISIBLE_DEVICES=3 lm_eval \
     --batch_size 1
 ```
 
-## QUANTIZATION AWARE TRAINING 
 
-> Let's redirect to the working directory and environment, in case setting up from start, follow https://github.com/dheyoai/torchtune/tree/dheyo_fp4
+## 🏷️ QUANTIZATION AWARE TRAINING 🌱
+
+> 🔍️ Let's redirect to the working directory and environment, in case setting up from start, follow https://github.com/dheyoai/torchtune/tree/dheyo_fp4
 ```bash
 cd /shareddata/dheyo/varunika/QAT/torchtune/recipes/configs/distilled_qwen2_5/1.5B_qat_full.yaml
 ```
 
->  This config assumes that you've run the following command before launching:
+> 🩹 This config assumes that you've run the following command before launching:
 ```bash
 tune download deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B --output-dir /shareddata/dheyo/varunika/QAT/torchtune/models/DeepSeek-R1-Distill-Qwen-1.5B
 ```
 
-> To launch on 2 devices, run the following command from root:
+> 🧵 To launch on 2 devices, run the following command from root:
 ```bash
+export HIP_VISIBLE_DEVICES=0,1
 tune run --nproc_per_node 2 qat_distributed --config recipes/configs/distilled_qwen2_5/1.5B_qat_full.yaml
 ```
 
-> You can add specific overrides through the command line. For example, to override the checkpointer directory while launching training:
+> ⚗️ You can add specific overrides through the command line. For example, to override the checkpointer directory while launching training:
 ```bash
 tune run --nproc_per_node 2 full_finetune_distributed --config qwen2_5/1.5B_full checkpointer.checkpoint_dir=<YOUR_CHECKPOINT_DIR>
 ```
 
-> Keep changing the no of epochs, lr, batch size
+> ⚡️ Keep changing the no of epochs, lr, batch size
 
-# To add support for a new dataset:
-> change 1:
+# 👷 To add support for a new dataset: 👷
+> 🚑️ change 1: Go to the directory: /shareddata/dheyo/varunika/QAT/torchtune/recipes/configs/distilled_qwen2_5/1.5B_qat_full.yaml 🔍️
 ```bash
 dataset:
   _component_: torchtune.datasets.new_dataset_name <---- change here
@@ -273,6 +275,16 @@ dataset_val:
   split: train[95%:]
 batch_size_val: ${batch_size}
 ```
+
+> ✅ After the above change, go to the directory:
+```bash
+cd /shareddata/dheyo/varunika/QAT/torchtune/torchtune/datasets
+Add a file "_dataset_name.py" ( example :_gsm8k.py )
+## Refer to the documentation provided (hard copy) for more details about the code.
+Add related functions in _messages.py (/shareddata/dheyo/varunika/QAT/torchtune/torchtune/data/_messages.py) and __init__.py.
+```
+
+> ✨ To add support for the new model, REFER TO THE DOCUMENTATION !! ✨
 
 ---
 
