@@ -217,12 +217,17 @@ VLLM_USE_TRITON_FLASH_ATTN=0 python -m lcb_runner.runner.main \
 ## ⚗️ TO RUN Lm_Evaluation_Harness 🙈
 
 > Let's redirect to the working directory and environment, in case setting up from start, follow https://github.com/EleutherAI/lm-evaluation-harness/blob/main/README.md
+
+
 ```bash
 cd /shareddata/dheyo/varunika/benchmarking/llmeval/DYNAMIC_QUANTIZATION/lm-evaluation-harness
 source lm_eval/bin/activate
 ```
+
+
 > 👽️ Once redirected, run the command!
 > 🚧 Change the path and tokenizer based on the model you wish to serve!!
+
 ```bash
 HIP_VISIBLE_DEVICES=3 lm_eval \
     --model hf \
@@ -232,6 +237,13 @@ HIP_VISIBLE_DEVICES=3 lm_eval \
     --batch_size 1
 ```
 
+> To run it according to our settings and hyperparameters, I created a bash script.
+```bash
+cd /shareddata/dheyo/varunika/benchmarking/llmeval/DYNAMIC_QUANTIZATION/lm-evaluation-harness
+chmod +x run_eval.sh
+./run_eval.sh
+```
+> To change hyperparameters or GPU, edit the bash script.
 
 ## 🏷️ QUANTIZATION AWARE TRAINING 🌱
 
