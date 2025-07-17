@@ -232,6 +232,48 @@ HIP_VISIBLE_DEVICES=3 lm_eval \
     --batch_size 1
 ```
 
+## QUANTIZATION AWARE TRAINING 
+
+> Let's redirect to the working directory and environment, in case setting up from start, follow https://github.com/dheyoai/torchtune/tree/dheyo_fp4
+```bash
+cd /shareddata/dheyo/varunika/QAT/torchtune/recipes/configs/distilled_qwen2_5/1.5B_qat_full.yaml
+```
+
+>  This config assumes that you've run the following command before launching:
+```bash
+tune download deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B --output-dir /shareddata/dheyo/varunika/QAT/torchtune/models/DeepSeek-R1-Distill-Qwen-1.5B
+```
+
+> To launch on 2 devices, run the following command from root:
+```bash
+tune run --nproc_per_node 2 qat_distributed --config recipes/configs/distilled_qwen2_5/1.5B_qat_full.yaml
+```
+
+> You can add specific overrides through the command line. For example, to override the checkpointer directory while launching training:
+```bash
+tune run --nproc_per_node 2 full_finetune_distributed --config qwen2_5/1.5B_full checkpointer.checkpoint_dir=<YOUR_CHECKPOINT_DIR>
+```
+
+> Keep changing the no of epochs, lr, batch size
+
+# To add support for a new dataset:
+> change 1:
+```bash
+dataset:
+  _component_: torchtune.datasets.new_dataset_name <---- change here
+  packed: False  # True increases speed
+  split: train[:95%]
+seed: null
+shuffle: True
+
+# Validation
+run_val_every_n_steps: 100 # Change to an integer to enable validation every N steps
+dataset_val:
+  _component_: torchtune.datasets.new_dataset_name <---- change here
+  split: train[95%:]
+batch_size_val: ${batch_size}
+```
+
 ---
 
 > 🎉 You’re all set to benchmark and deploy DeepSeek models efficiently!
