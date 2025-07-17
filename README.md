@@ -213,7 +213,8 @@ VLLM_USE_TRITON_FLASH_ATTN=0 python -m lcb_runner.runner.main \
   --evaluate \
   --release_version release_v1
 ```
-## 🧪 TO RUN Lm_Evaluation_Harness 🙈
+
+## ⚗️ TO RUN Lm_Evaluation_Harness 🙈
 
 > Let's redirect to the working directory and environment, in case setting up from start, follow https://github.com/EleutherAI/lm-evaluation-harness/blob/main/README.md
 ```bash
