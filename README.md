@@ -213,6 +213,23 @@ VLLM_USE_TRITON_FLASH_ATTN=0 python -m lcb_runner.runner.main \
   --evaluate \
   --release_version release_v1
 ```
+## 🧪 TO RUN Lm_Evaluation_Harness 🙈
+
+> Let's redirect to the working directory and environment, in case setting up from start, follow https://github.com/EleutherAI/lm-evaluation-harness/blob/main/README.md
+```bash
+cd /shareddata/dheyo/varunika/benchmarking/llmeval/DYNAMIC_QUANTIZATION/lm-evaluation-harness
+source lm_eval/bin/activate
+```
+> 👽️ Once redirected, run the command!
+> 🚧 Change the path and tokenizer based on the model you wish to serve!!
+```bash
+HIP_VISIBLE_DEVICES=3 lm_eval \
+    --model hf \
+    --model_args pretrained=/shareddata/dheyo/varunika/benchmarking/llmeval/DYNAMIC_QUANTIZATION/gguf/,gguf_file=DeepSeek-R1-Distill-Qwen-1.5B-gsm8k_v8_qat.gguf,tokenizer=/shareddata/dheyo/varunika/benchmarking/llmeval/gsm8k_v8 \
+    --tasks gsm8k \
+    --device cuda:0 \
+    --batch_size 1
+```
 
 ---
 
