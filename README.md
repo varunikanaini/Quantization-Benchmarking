@@ -245,12 +245,15 @@ chmod +x run_eval.sh
 ```
 > To change hyperparameters or GPU, edit the bash script.
 
+
 ## 🏷️ QUANTIZATION AWARE TRAINING 🌱
+
 
 > 🔍️ Let's redirect to the working directory and environment, in case setting up from start, follow https://github.com/dheyoai/torchtune/tree/dheyo_fp4
 ```bash
 cd /shareddata/dheyo/varunika/QAT/torchtune/recipes/configs/distilled_qwen2_5/1.5B_qat_full.yaml
 ```
+
 
 > 🩹 This config assumes that you've run the following command before launching:
 ```bash
@@ -263,15 +266,20 @@ export HIP_VISIBLE_DEVICES=0,1
 tune run --nproc_per_node 2 qat_distributed --config recipes/configs/distilled_qwen2_5/1.5B_qat_full.yaml
 ```
 
+
 > ⚗️ You can add specific overrides through the command line. For example, to override the checkpointer directory while launching training:
 ```bash
 tune run --nproc_per_node 2 full_finetune_distributed --config qwen2_5/1.5B_full checkpointer.checkpoint_dir=<YOUR_CHECKPOINT_DIR>
 ```
 
+
 > ⚡️ Keep changing the no of epochs, lr, batch size
 
+
 # 👷 To add support for a new dataset: 👷
+
 > 🚑️ change 1: Go to the directory: /shareddata/dheyo/varunika/QAT/torchtune/recipes/configs/distilled_qwen2_5/1.5B_qat_full.yaml 🔍️
+
 ```bash
 dataset:
   _component_: torchtune.datasets.new_dataset_name <---- change here
@@ -289,6 +297,7 @@ batch_size_val: ${batch_size}
 ```
 
 > ✅ After the above change, go to the directory:
+
 ```bash
 cd /shareddata/dheyo/varunika/QAT/torchtune/torchtune/datasets
 Add a file "_dataset_name.py" ( example :_gsm8k.py )
